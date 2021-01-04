@@ -30,7 +30,7 @@ async def init_app(config=DEFAULT_CONFIG):
     aiohttp_jinja2.setup(app, loader=jinja2.PackageLoader(NAME, 'templates'))
 
     app.on_startup.append(startup_tasks)
-    app.on_cleanup.append(cleanup_tasks)
+    #app.on_cleanup.append(cleanup_tasks)
 
     setup_routes(app)
     setup_middlewares(app)
@@ -57,15 +57,14 @@ async def startup_tasks(app):
     worker_offset = (gunicorn_workerid - 1) * global_period
     await asyncio.sleep(worker_offset)
 
-    app['polling'] = asyncio.create_task(polling(period=worker_period, token=app['token']))
 
 
+'''
 async def cleanup_tasks(app):
     app['polling'].cancel()
     with suppress(asyncio.CancelledError):
         await app['polling']
 
-'''
 @click.command()
 @click.version_option(prog_name=NAME, version='0.0.0')
 @click.option('--host', default=DEFAULT_CONFIG['host'], type=str, help='Server IP address')
