@@ -28,7 +28,7 @@ async def init_app(config=DEFAULT_CONFIG):
     aiohttp_jinja2.setup(app, loader=jinja2.PackageLoader(NAME, 'templates'))
 
     app.on_startup.append(startup_tasks)
-    app.on_cleanup.append(cleanup_tasks))
+    app.on_cleanup.append(cleanup_tasks)
 
     setup_routes(app)
     setup_middlewares(app)
