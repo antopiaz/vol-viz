@@ -4,3 +4,4 @@ click
 motor
 dnspython
 bs4
+gunicorn
