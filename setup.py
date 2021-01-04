@@ -17,11 +17,11 @@ setup(
     name=NAME,
     packages=[NAME],
     install_requires=install_requires,
-    author='Kevin Paul',
-    author_email='kpaul@ucar.edu',
-    description='A template aiohttp application repository',
+    author='Haiying Xu',
+    author_email='haiyingx@ucar.edu',
+    description='A benchmarking results publish application repository',
     long_description=long_description,
-    keywords='aiohttp mongodb motor ',
+    keywords='aiohttp benchmarking web_publish ',
     url='http://example.com/HelloWorld/',  # project home page, if any
     project_urls={
         'Source Code': 'https://github.com/ncar-xdev/aiohttp_app_template',
