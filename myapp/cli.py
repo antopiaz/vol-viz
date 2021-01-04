@@ -58,7 +58,7 @@ async def startup_tasks(app):
     app['polling'] = asyncio.create_task(polling(period=worker_period, token=app['token']))
 
 
-async def cleanup_background_tasks(app):
+async def cleanup_tasks(app):
     app['polling'].cancel()
     with suppress(asyncio.CancelledError):
         await app['polling']
