@@ -27,8 +27,8 @@ async def init_app(config=DEFAULT_CONFIG):
     app['config'] = config
     aiohttp_jinja2.setup(app, loader=jinja2.PackageLoader(NAME, 'templates'))
 
-    app.on_startup.append(connect_db)
-    app.on_cleanup.append(disconnect_db)
+    app.on_startup.append(startup_tasks)
+    app.on_cleanup.append(cleanup_tasks))
 
     setup_routes(app)
     setup_middlewares(app)
@@ -46,6 +46,24 @@ def config_callback(ctx, config_param, config_file):
             param.default = config[param.name]
 
 
+async def startup_tasks(app):
+    gunicorn_nworkers = int(os.environ.get('GUNICORN_NUM_WORKERS', 0))
+    gunicorn_workerid = int(os.environ.get('GUNICORN_WORKER_ID', 0))
+
+    global_period = 10
+    worker_period = global_period * gunicorn_nworkers
+    worker_offset = (gunicorn_workerid - 1) * global_period
+    await asyncio.sleep(worker_offset)
+
+    app['polling'] = asyncio.create_task(polling(period=worker_period, token=app['token']))
+
+
+async def cleanup_background_tasks(app):
+    app['polling'].cancel()
+    with suppress(asyncio.CancelledError):
+        await app['polling']
+
+'''
 @click.command()
 @click.version_option(prog_name=NAME, version='0.0.0')
 @click.option('--host', default=DEFAULT_CONFIG['host'], type=str, help='Server IP address')
@@ -68,3 +86,4 @@ def cli(**config):
     logging.basicConfig(level=getattr(logging, config['logging']))
     app = init_app(config=config)
     web.run_app(app, host=config['host'], port=config['port'])
+'''
