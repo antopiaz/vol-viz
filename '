@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input volume page</title>
+</head>
+<body>
+    <form method="post" action="/add_user">
+        <p>Put your data here:</p>
+        <label for="volume">Volume</label>
+        <input type="text" name="volume" id="volume" maxlength=10 minlength=1 placeholder="Volume" value=""  autofocus/>oz<br>
+        <p> </p>
+        <input type="submit" name="submit" id="post" value="get"/><br>
+    </form>
+</body>
+</html>
