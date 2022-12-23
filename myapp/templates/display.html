@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Volviz display volume page</title>
+    </head>
+    <body>
+        <div>
+            <h3><a href="/">Volome visualization </a></h3>
+        </div>
+
+        <div>
+            <p>Volume in oz is: {{ vol }} oz</p>
+            <p>Volume in ml is: {{ ml}} ml </p>
+        </div>
+        {%for i in range(0,  count )%}
+	    <img src="static/img/{{ imgname }}" alt=""  height="345" />
+        {%endfor%}
+    </body>
+</html>

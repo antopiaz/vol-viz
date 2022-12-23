@@ -13,15 +13,25 @@ async def login(request):
     if request.method == 'POST':
         form = await request.post()
         #error = validate_login(form)
-        vol=form['volume']
-        ml=float(vol)*29.97
-        data = Path(f"~/Downloads/{vol}oz.jpg").read_bytes()
+        voloz=form['volumeoz']
+        volml=form['volumeml']
+        if voloz:
+            ml=round(float(voloz)*29.574,2)
+            vol=voloz 
+        elif volml and not voloz:
+            vol=round(float(volml)/29.574,2)
+            ml=volml
         error = 1
+        len=2
+        context = {
+        'vol': vol,
+        'ml': ml,
+        'imgname': f"{vol}oz.jpg",
+        'count': len
+        }
         if vol:
-            #return Response(text='{}oz equals  {}ml volume'
-            #                 ''.format(vol, ml))
-            return Response(body=data,headers='{}oz equals  {}ml volume'
-                             ''.format(vol, ml), content_type="image/png")
+            response = aiohttp_jinja2.render_template("display.html", request, context=context)
+            return response
         else:
             # login form is valid
             location = request.app.router['index'].url_for()

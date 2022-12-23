@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Input volume page</title>
+    <title>Volviz input volume page</title>
 </head>
 <body>
     <form action="/login" method="post">
         <p>Put your data here:</p>
         <label for="volume">Volume</label>
-        <input type="text" name="volume" id="volume" maxlength=10 minlength=1 placeholder="Volume" value=""  autofocus/>oz<br>
+        <br>
+        <input type="text" name="volumeoz" id="volumeoz" maxlength=10 minlength=1 placeholder="Volume" value=""  autofocus/>oz<br>
+        <br>
+        <input type="text" name="volumeml" id="volumeml" maxlength=10 minlength=1 placeholder="Volume" value=""  autofocus/>ml<br>
         <p> </p>
-        <input type="submit" name="submit" id="post" value="get"/><br>
+        <input type="submit" name="submit" id="post" value="Convert"/><br>
     </form>
 </body>
 </html>
