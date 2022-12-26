@@ -11,9 +11,9 @@
         <div>
             <p>Volume in oz is: {{ vol }} oz</p>
             <p>Volume in ml is: {{ ml}} ml </p>
+            <p>The volume is comparable to the following items combined. </p>
         </div>
         {%for i in range(0,  count )%}
-            <p>{{answers[i]}}</p>
 	    <img src="static/img/{{ answers[i] }}oz.jpg" alt=""  height="345" />
         {%endfor%}
     </body>
