@@ -13,7 +13,6 @@ async def login(request):
 
     if request.method == 'POST':
         form = await request.post()
-        #error = validate_login(form)
         voloz=form['volumeoz']
         volml=form['volumeml']
         if voloz:
@@ -22,18 +21,20 @@ async def login(request):
         elif volml and not voloz:
             vol=round(float(volml)/29.574,2)
             ml=float(volml)
-        error = 1
-        print(type(vol))
-        answers=roundVolumes(vol,0)
-        answer_size=len(answers)
-        context = {
-        'vol': vol,
-        'ml': ml,
-        'imgname': f"{vol}oz.jpg",
-        'count': answer_size,
-        'answers':answers,
-        }
-        if vol:
+        if len(voloz) or len(volml):
+            if vol == 0.0 or vol >48:
+                answer_size=0
+                answers=[]
+            else:
+                answers=roundVolumes(vol,0)
+                answer_size=len(answers)
+            context = {
+            'vol': vol,
+            'ml': ml,
+            'imgname': f"{vol}oz.jpg",
+            'count': answer_size,
+            'answers':answers,
+            }
             response = aiohttp_jinja2.render_template("display.html", request, context=context)
             return response
         else:
