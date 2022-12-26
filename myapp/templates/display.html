@@ -13,7 +13,8 @@
             <p>Volume in ml is: {{ ml}} ml </p>
         </div>
         {%for i in range(0,  count )%}
-	    <img src="static/img/{{ imgname }}" alt=""  height="345" />
+            <p>{{answers[i]}}</p>
+	    <img src="static/img/{{ answers[i] }}oz.jpg" alt=""  height="345" />
         {%endfor%}
     </body>
 </html>

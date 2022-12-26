@@ -1,6 +1,7 @@
 import aiohttp_jinja2
 from aiohttp.web import View, Response, HTTPFound
 from pathlib import Path
+from .roundvolumes import roundVolumes
 
 
 @aiohttp_jinja2.template('input_volume.html')
@@ -17,17 +18,20 @@ async def login(request):
         volml=form['volumeml']
         if voloz:
             ml=round(float(voloz)*29.574,2)
-            vol=voloz 
+            vol=float(voloz) 
         elif volml and not voloz:
             vol=round(float(volml)/29.574,2)
-            ml=volml
+            ml=float(volml)
         error = 1
-        len=2
+        print(type(vol))
+        answers=roundVolumes(vol,0)
+        answer_size=len(answers)
         context = {
         'vol': vol,
         'ml': ml,
         'imgname': f"{vol}oz.jpg",
-        'count': len
+        'count': answer_size,
+        'answers':answers,
         }
         if vol:
             response = aiohttp_jinja2.render_template("display.html", request, context=context)
@@ -67,5 +71,61 @@ class AddUserView(View):
     async def get(self):
         response = await index(self.request)
         return response
+'''
+def roundVolumes(inputVolume, units):
+    
+    mlList = [30,59,89,118,148,177,207,237,296,355,473,532]
+    ozList = [1,2,3,4,5,6,7,8,10,12,16,18,20,24]
 
-
+    unitsArr = [ozList, mlList]
+       
+    answers = [0,0]           
+    
+    for i in range(len(ozList)):
+        if inputVolume == unitsArr[units][i]:
+            answers = [1,i]
+            return answers
+           
+    
+    for i in range(len(ozList)):
+        
+        
+    
+    
+        if inputVolume%unitsArr[units][i] == 0:
+            print("bruh")
+            answers[0] = inputVolume/unitsArr[units][i]
+            if answers[0]>4:
+                continue                
+            else:
+                
+                answers[1] = i
+                return answers
+                
+                                                                                            
+        elif inputVolume < unitsArr[units][i]:
+                          
+            answers[0] = 1
+            if(i==0):
+                                   
+                answers[1] = i    
+                return answers
+                
+            else:
+                
+                average = (unitsArr[units][i] + unitsArr[units][i-1])/2.0
+                if(inputVolume >= average):
+                    answers[1] = i
+                else:
+                    answers[1] = i-1                    
+                return answers
+                
+                       
+        elif inputVolume > 48:
+            print("uh oh")
+            answers[1]=12
+            return answers
+            
+                               
+    return answers
+'''
