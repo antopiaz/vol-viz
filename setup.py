@@ -4,6 +4,7 @@ from setuptools import find_packages, setup
 
 NAME = find_packages(exclude=['*.tests'])[0]
 
+
 with open('requirements.txt') as f:
     install_requires = f.read().strip().split('\n')
 
