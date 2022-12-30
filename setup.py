@@ -18,16 +18,14 @@ setup(
     name=NAME,
     packages=[NAME],
     install_requires=install_requires,
-    author='Haiying Xu',
-    author_email='haiyingx@ucar.edu',
-    description='A benchmarking results publish application repository',
+    author='Miles Zheng',
+    author_email='mzheng.012@gmail.com',
+    description='A project to help visualize volmes from 0-48 fl oz',
     long_description=long_description,
-    keywords='aiohttp benchmarking web_publish ',
+    keywords='volume visualization fluid',
     url='http://example.com/HelloWorld/',  # project home page, if any
     project_urls={
-        'Source Code': 'https://github.com/ncar-xdev/aiohttp_app_template',
-        'Documentation': 'https://ncar-xdev.github.io/aiohttp_app_template',
-        'Bug Tracker': 'https://github.com/ncar-xdev/aiohttp_app_template/issues',
+        'Source Code': 'https://github.com/antopiaz/vol-viz',
     },
     classifiers=[
         'License :: OSI Approved :: Apache Software License',

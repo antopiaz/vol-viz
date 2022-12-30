@@ -57,34 +57,3 @@ async def startup_tasks(app):
     worker_offset = (gunicorn_workerid - 1) * global_period
     await asyncio.sleep(worker_offset)
 
-
-
-'''
-async def cleanup_tasks(app):
-    app['polling'].cancel()
-    with suppress(asyncio.CancelledError):
-        await app['polling']
-
-@click.command()
-@click.version_option(prog_name=NAME, version='0.0.0')
-@click.option('--host', default=DEFAULT_CONFIG['host'], type=str, help='Server IP address')
-@click.option('--port', default=DEFAULT_CONFIG['port'], type=int, help='Server port number')
-@click.option('--logging', default=DEFAULT_CONFIG['logging'], help='Logging output level')
-@click.option('--mongouri', default=DEFAULT_CONFIG['mongouri'], type=str, help='MongoDB URI')
-@click.option(
-    '--mongodb', default=DEFAULT_CONFIG['mongodb'], type=str, help='MongoDB Database Name'
-)
-@click.option(
-    '--config',
-    default=None,
-    type=click.Path(exists=True),
-    help='User-defined configuration file location',
-    is_eager=True,
-    expose_value=False,
-    callback=config_callback,
-)
-def cli(**config):
-    logging.basicConfig(level=getattr(logging, config['logging']))
-    app = init_app(config=config)
-    web.run_app(app, host=config['host'], port=config['port'])
-'''
