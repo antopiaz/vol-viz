@@ -1,4 +1,4 @@
-name: benchmarking-web
+name: vol-viz
 channels:
   - conda-forge
 dependencies:
