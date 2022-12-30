@@ -11,6 +11,7 @@ Welcome to the aiohttp_app_template's documentation!
    :caption: Contents:
 
    readme
+   
 
 
 Indices and tables
