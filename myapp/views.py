@@ -45,7 +45,7 @@ async def home(request):
     return {}
 
 async def handler(request):
-    location = request.app.router['login'].url_for()
+    location = request.app.router['home'].url_for()
     raise HTTPFound(location=location)
 
 
