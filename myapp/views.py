@@ -8,7 +8,7 @@ from .roundvolumes import roundVolumes
 async def index(request):
     return {}
 
-@aiohttp_jinja2.template('login.html')
+@aiohttp_jinja2.template('home.html')
 async def login(request):
 
     if request.method == 'POST':
