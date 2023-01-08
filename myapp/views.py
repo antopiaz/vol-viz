@@ -9,7 +9,7 @@ async def index(request):
     return {}
 
 @aiohttp_jinja2.template('home.html')
-async def login(request):
+async def home(request):
 
     if request.method == 'POST':
         form = await request.post()
