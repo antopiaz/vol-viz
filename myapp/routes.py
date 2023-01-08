@@ -1,6 +1,6 @@
 import pathlib
 
-from .views import AddUserView, index, home, handler
+from .views import AddUserView, home, handler
 
 PROJECT_ROOT = pathlib.Path(__file__).parent
 
@@ -12,7 +12,7 @@ def setup_routes(app):
     app.router.add_get('/', handler)
     app.router.add_get('/home', home, name='home')
     app.router.add_post('/home', home, name='home')
-    app.router.add_get('/index', index, name='index')
+    #app.router.add_get('/index', index, name='index')
     setup_static_routes(app)
 
 
